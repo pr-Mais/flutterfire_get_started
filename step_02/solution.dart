@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,38 @@ const firebaseOptions = FirebaseOptions(
 );
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Configure the default Firebase project.
+  await Firebase.initializeApp(options: firebaseOptions);
+
   runApp(
     const MyApp(),
   );
+}
+
+/// Holds the authentication state of the user.
+class AuthState {
+  final _auth = FirebaseAuth.instance;
+
+  User? _user;
+  User? get user => _user;
+
+  AuthState() {
+    _auth.authStateChanges().listen((user) {
+      _user = user;
+    });
+  }
+
+  Future<void> signUpNewGuest(String name) async {
+    try {
+      await _auth.signInAnonymously();
+      await _auth.currentUser!.updateDisplayName(name);
+      await _auth.currentUser!.reload();
+    } on FirebaseAuthException {
+      rethrow;
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {

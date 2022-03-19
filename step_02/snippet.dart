@@ -12,9 +12,20 @@ const firebaseOptions = FirebaseOptions(
 );
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Configure the default Firebase project.
+  await Firebase.initializeApp(options: firebaseOptions);
+
   runApp(
     const MyApp(),
   );
+}
+
+/// Holds the authentication state of the user.
+class AuthState {
+  User? _user;
+  User? get user => _user;
 }
 
 class MyApp extends StatelessWidget {
