@@ -10,3 +10,9 @@ steps:
   - name: Step 3
     directory: step_03
     has_solution: true
+  - name: Step 4
+    directory: step_04
+    has_solution: true
+  - name: Step 5
+    directory: step_05
+    has_solution: true

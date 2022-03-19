@@ -18,5 +18,5 @@ There's already some code provided, if you run the app at this step, you will se
 ### On this step:
 1. We will initialize Firebase project using the provided configurations.
 
-# 🥲 Stuck?
+## 🥲 Stuck?
 Just click on **Show Solution** button somewhere below 👇🏻.

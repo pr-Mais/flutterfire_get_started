@@ -13,5 +13,5 @@ To use Firebase Auth in Flutter, we first need to import the [`firebase_auth` pa
 1. Set up a listener to changes in authentication states and update the current user accordingly.
 2. Use `firebase_auth` to sign in users anonymously.
 
-# 🥲 Stuck?
+## 🥲 Stuck?
 Just click on **Show Solution** button somewhere below 👇🏻.

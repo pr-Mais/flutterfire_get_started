@@ -10,5 +10,5 @@ In the signed-in case, we want to show the `PollsPage`.
 2. Sign-in new user and show their name on the Polls Page.
 3. Design a nice button for creating new polls.
 
-# 🥲 Stuck?
+## 🥲 Stuck?
 Just click on **Show Solution** button somewhere below 👇🏻.

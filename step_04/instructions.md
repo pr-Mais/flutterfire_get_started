@@ -8,5 +8,5 @@ We want to show the list of available polls to all users.
 1. List the polls from Firestore.
 2. Listen to user click events on poll answers to a voting callback in each individual poll.
 
-# 🥲 Stuck?
+## 🥲 Stuck?
 Just click on **Show Solution** button somewhere below 👇🏻.
