@@ -131,12 +131,8 @@ class PollsPage extends StatelessWidget {
         title: Text('Welcome ${name ?? 'User'}'),
       ),
       body: Column(
-        children: [
-          const CreatePollButton(),
-        ],
+        children: [],
       ),
     );
   }
 }
-
-// TODO(8): Add a new StatelessWidget named `CreatePollButton`.
