@@ -1,4 +1,7 @@
-//TODO(1): import `firebase_core` package.
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+// TODO(1): import provider package
 
 import 'package:flutter/material.dart';
 
@@ -12,13 +15,41 @@ const firebaseOptions = FirebaseOptions(
 );
 
 void main() async {
-  //TODO(3): Ensure WidgetsFlutterBinding is initialized.
+  WidgetsFlutterBinding.ensureInitialized();
 
-  //TODO(2): calls `Firebase.initializeApp()` and pass firebaseOptions.
+  // Configure the default Firebase project.
+  await Firebase.initializeApp(options: firebaseOptions);
 
+  // TODO(2): wrap with `ChangeNotifierProvider` and create a new `AuthState` instance.
   runApp(
     const MyApp(),
   );
+}
+
+/// Holds the authentication state of the user.
+// TODO(3): extend `ChangeNotifier`.
+class AuthState {
+  final _auth = FirebaseAuth.instance;
+
+  User? _user;
+  User? get user => _user;
+
+  AuthState() {
+    _auth.authStateChanges().listen((user) {
+      _user = user;
+      // TODO(4): call `notifyListeners()`.
+    });
+  }
+
+  Future<void> signUpNewGuest(String name) async {
+    try {
+      await _auth.signInAnonymously();
+      await _auth.currentUser!.updateDisplayName(name);
+      await _auth.currentUser!.reload();
+    } on FirebaseAuthException {
+      rethrow;
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -31,6 +62,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
+      // TODO(5): Use `Consumer` to dynamically show the user based on `AuthState` user property.
       home: const WelcomePage(),
     );
   }
@@ -73,6 +105,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               const SizedBox(height: 20),
+              // TODO(6): Use `Consumer` to use the `AuthState` method `signUpNewGuest()` on pressed event.
               ElevatedButton(
                 onPressed: () {},
                 child: const Text('Start'),
@@ -84,3 +117,26 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 }
+
+class PollsPage extends StatelessWidget {
+  const PollsPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO(7): Read the user display name from `AuthState` using context.
+    final name = '';
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome ${name ?? 'User'}'),
+      ),
+      body: Column(
+        children: [
+          const CreatePollButton(),
+        ],
+      ),
+    );
+  }
+}
+
+// TODO(8): Add a new StatelessWidget named `CreatePollButton`.

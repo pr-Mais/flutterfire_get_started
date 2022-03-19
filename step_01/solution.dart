@@ -1,3 +1,4 @@
+//TODO(1): import `firebase_core` package.
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -12,8 +13,10 @@ const firebaseOptions = FirebaseOptions(
 );
 
 void main() async {
+  //TODO(2): Ensure WidgetsFlutterBinding is initialized.
   WidgetsFlutterBinding.ensureInitialized();
 
+  //TODO(1): calls `Firebase.initializeApp()` and pass firebaseOptions.
   // Configure the default Firebase project.
   await Firebase.initializeApp(options: firebaseOptions);
 

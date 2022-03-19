@@ -15,9 +15,8 @@ We will build a polls game that enables users to create polls and answer them in
 In the first step, we will configure Firebase in our Flutter app.
 There's already some code provided, if you run the app at this step, you will see a welcome page with a field that ask you for your name.
 
-## ✅ TODO list
-1. Call `Firebase.initializeApp()` method in `main()`, and pass it the constant `FirebaseOptions` that's already defined.
-2. Ensure widgets are initialized by calling `WidgetsFlutterBinding.ensureInitialized()` before `initializeApp()`.
+### On this step:
+1. We will initialize Firebase project using the provided configurations.
 
 # 🥲 Stuck?
 Just click on **Show Solution** button somewhere below 👇🏻.

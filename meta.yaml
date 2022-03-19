@@ -7,3 +7,6 @@ steps:
   - name: Step 2
     directory: step_02
     has_solution: true
+  - name: Step 3
+    directory: step_03
+    has_solution: true
