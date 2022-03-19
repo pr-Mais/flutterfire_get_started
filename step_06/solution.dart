@@ -73,10 +73,13 @@ class PollsState extends ChangeNotifier {
     });
   }
 
-  Future<void> createPoll(Poll poll) async {}
+  Future<void> createPoll(Poll poll) async {
+    await _pollsRef.add(poll);
+  }
 
-  // TODO(1): Implement Vote.
-  Future<void> vote(String uid, String pollId, int answerId) async {}
+  Future<void> vote(String uid, String pollId, int answerId) async {
+    await _pollsRef.doc(pollId).update({'users.$uid': answerId});
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -171,6 +174,21 @@ class PollsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Consumer<PollsState>(
+            builder: (context, pollsState, __) => CreatePollButton(
+              onTap: () {
+                showBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return NewPollSheet(
+                        onSave: (Poll poll) async {
+                          await pollsState.createPoll(poll);
+                        },
+                      );
+                    });
+              },
+            ),
+          ),
           Expanded(
             child: Consumer<PollsState>(
               builder: (_, pollsState, __) => ListView.builder(
@@ -226,6 +244,124 @@ class PollListItem extends StatelessWidget {
           ),
         const Divider(),
       ],
+    );
+  }
+}
+
+class CreatePollButton extends StatelessWidget {
+  const CreatePollButton({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.amber[100],
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            child: const Text(
+              'Create a Poll',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NewPollSheet extends StatefulWidget {
+  const NewPollSheet({
+    Key? key,
+    required this.onSave,
+  }) : super(key: key);
+  final Function(Poll) onSave;
+
+  @override
+  State<NewPollSheet> createState() => _NewPollSheetState();
+}
+
+class _NewPollSheetState extends State<NewPollSheet> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final questionController = TextEditingController();
+  final answer1 = TextEditingController();
+  final answer2 = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheet(
+      onClosing: () {},
+      builder: (context) {
+        return Form(
+          key: formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: questionController,
+                  validator: (value) =>
+                      value != null && value.isNotEmpty ? null : 'required',
+                  decoration: const InputDecoration(
+                    labelText: 'Question',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 50),
+                TextFormField(
+                  controller: answer1,
+                  validator: (value) =>
+                      value != null && value.isNotEmpty ? null : 'required',
+                  decoration: const InputDecoration(
+                    labelText: 'Answer 1',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: answer2,
+                  validator: (value) =>
+                      value != null && value.isNotEmpty ? null : 'required',
+                  decoration: const InputDecoration(
+                    labelText: 'Answer 2',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      Poll poll = Poll(
+                        answers: [
+                          Answer(id: 0, text: answer1.text),
+                          Answer(id: 1, text: answer2.text)
+                        ],
+                        question: questionController.text,
+                      );
+                      widget.onSave(poll);
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text('Create'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

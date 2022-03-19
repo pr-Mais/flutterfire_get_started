@@ -170,7 +170,6 @@ class PollsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const CreatePollButton(),
           Expanded(
             child: Consumer<PollsState>(
               builder: (_, pollsState, __) => ListView.builder(
@@ -226,38 +225,6 @@ class PollListItem extends StatelessWidget {
           ),
         const Divider(),
       ],
-    );
-  }
-}
-
-class CreatePollButton extends StatelessWidget {
-  const CreatePollButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.amber[100],
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          margin: const EdgeInsets.all(30),
-          height: 100,
-          width: double.infinity,
-          padding: const EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Container(
-            alignment: Alignment.center,
-            child: const Text(
-              'Create a Poll',
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
