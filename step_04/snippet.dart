@@ -86,6 +86,7 @@ class MyApp extends StatelessWidget {
         builder: (_, auth, __) {
           // If a guest has signed in.
           if (auth._user != null) {
+            // TODO(5): Make `PollsState` available to UI using provider.
             return PollsPage();
           } else {
             // If no guest signed in, we prompt them to sign in.

@@ -93,7 +93,10 @@ class MyApp extends StatelessWidget {
         builder: (_, auth, __) {
           // If a guest has signed in.
           if (auth._user != null) {
-            return PollsPage();
+            return ChangeNotifierProvider<PollsState>(
+              create: (_) => PollsState(),
+              child: const PollsPage(),
+            );
           } else {
             // If no guest signed in, we prompt them to sign in.
             return const WelcomePage();
