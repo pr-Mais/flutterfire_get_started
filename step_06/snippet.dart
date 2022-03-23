@@ -237,19 +237,22 @@ class PollListItem extends StatelessWidget {
 class CreatePollButton extends StatelessWidget {
   const CreatePollButton({
     Key? key,
+    required this.onTap,
   }) : super(key: key);
+
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.amber[100],
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Container(
-          margin: const EdgeInsets.all(30),
-          height: 100,
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          height: 60,
           width: double.infinity,
-          padding: const EdgeInsets.all(30),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),

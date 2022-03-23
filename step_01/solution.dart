@@ -13,11 +13,10 @@ const firebaseOptions = FirebaseOptions(
 );
 
 void main() async {
-  //TODO(2): Ensure WidgetsFlutterBinding is initialized.
+  //TODO(3): Ensure WidgetsFlutterBinding is initialized.
   WidgetsFlutterBinding.ensureInitialized();
 
-  //TODO(1): calls `Firebase.initializeApp()` and pass firebaseOptions.
-  // Configure the default Firebase project.
+  //TODO(2): calls `Firebase.initializeApp()` and pass firebaseOptions.
   await Firebase.initializeApp(options: firebaseOptions);
 
   runApp(

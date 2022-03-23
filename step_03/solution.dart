@@ -47,6 +47,9 @@ class AuthState extends ChangeNotifier {
       await _auth.signInAnonymously();
       await _auth.currentUser!.updateDisplayName(name);
       await _auth.currentUser!.reload();
+
+      _user = _auth.currentUser;
+      notifyListeners();
     } on FirebaseAuthException {
       rethrow;
     }
@@ -134,7 +137,7 @@ class PollsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = context.read<AuthState>().user!;
+    final currentUser = context.watch<AuthState>().user!;
 
     return Scaffold(
       appBar: AppBar(

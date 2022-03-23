@@ -26,6 +26,10 @@ void main() async {
 class AuthState {
   User? _user;
   User? get user => _user;
+
+  //TODO(1): setup a listener when constructing a new [AuthState].
+
+  //TODO(2): declare a method to sign up anonymous users.
 }
 
 class MyApp extends StatelessWidget {

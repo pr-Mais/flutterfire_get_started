@@ -30,12 +30,14 @@ class AuthState {
   User? _user;
   User? get user => _user;
 
+  //TODO(1): setup a listener when constructing a new [AuthState].
   AuthState() {
     _auth.authStateChanges().listen((user) {
       _user = user;
     });
   }
 
+  //TODO(2): declare a method to sign up anonymous users.
   Future<void> signUpNewGuest(String name) async {
     try {
       await _auth.signInAnonymously();
