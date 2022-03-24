@@ -74,6 +74,7 @@ class PollsState extends ChangeNotifier {
   }
 
   Future<void> createPoll(Poll poll) async {
+    //TODO(1): Implement `createPoll`.
     await _pollsRef.add(poll);
   }
 

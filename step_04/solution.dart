@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+//TODO(1): import Firestore.
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:provider/provider.dart';
@@ -60,6 +62,7 @@ class PollsState extends ChangeNotifier {
   List<QueryDocumentSnapshot<Poll>>? _polls;
   List<QueryDocumentSnapshot<Poll>> get polls => _polls ?? [];
 
+  //TODO(2): Define a getter to reference the `poll` collection.
   CollectionReference<Poll> get _pollsRef =>
       _firestore.collection('poll').withConverter<Poll>(
             fromFirestore: (snapshot, _) => Poll.fromJson(snapshot.data()),
@@ -67,6 +70,7 @@ class PollsState extends ChangeNotifier {
           );
 
   PollsState() {
+    //TODO(3): Listen to poll collection and update local _polls list accordingly.
     _pollsRef.snapshots().listen((event) {
       _polls = event.docs;
       notifyListeners();
@@ -170,6 +174,7 @@ class PollsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          //TODO(4): Display a list of polls from `PollsState`.
           Expanded(
             child: Consumer<PollsState>(
               builder: (_, pollsState, __) => ListView.builder(
