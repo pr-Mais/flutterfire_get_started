@@ -208,7 +208,7 @@ class PollListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid = context.read<AuthState>().user!.uid;
+    final uid = context.watch<AuthState>().user!.uid;
     final pollData = poll.data();
     final answers = pollData.answers;
 

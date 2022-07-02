@@ -155,7 +155,7 @@ class PollsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = context.read<AuthState>().user!;
+    final currentUser = context.watch<AuthState>().user!;
 
     return Scaffold(
       appBar: AppBar(
