@@ -6,13 +6,14 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
+//TODO(1): paste your credentials.
 const firebaseOptions = FirebaseOptions(
-  apiKey: 'AIzaSyBzTujHR_zs6CnxcBR-e2PuFcj8U0EfyK0',
-  appId: '1:252234506814:web:a5950ff065e27301a8676f',
-  messagingSenderId: '252234506814',
-  projectId: 'get-started-with-flutter-3bdfb',
-  authDomain: 'get-started-with-flutter-3bdfb.firebaseapp.com',
-  storageBucket: 'get-started-with-flutter-3bdfb.appspot.com',
+  apiKey: '',
+  appId: '',
+  messagingSenderId: '',
+  projectId: '',
+  authDomain: '',
+  storageBucket: '',
 );
 
 void main() async {
@@ -75,8 +76,10 @@ class PollsState extends ChangeNotifier {
 
   Future<void> createPoll(Poll poll) async {}
 
-  //TODO(1): Implement Vote.
-  Future<void> vote(String uid, String pollId, int answerId) async {}
+  //TODO(2): implement Vote.
+  Future<void> vote(String uid, String pollId, int answerId) async {
+    throw UnimplementedError();
+  }
 }
 
 class MyApp extends StatelessWidget {

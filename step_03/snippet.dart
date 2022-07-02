@@ -1,17 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// TODO(1): import provider package
+// TODO(2): import provider package
 
 import 'package:flutter/material.dart';
 
+//TODO(1): paste your credentials.
 const firebaseOptions = FirebaseOptions(
-  apiKey: 'AIzaSyBzTujHR_zs6CnxcBR-e2PuFcj8U0EfyK0',
-  appId: '1:252234506814:web:a5950ff065e27301a8676f',
-  messagingSenderId: '252234506814',
-  projectId: 'get-started-with-flutter-3bdfb',
-  authDomain: 'get-started-with-flutter-3bdfb.firebaseapp.com',
-  storageBucket: 'get-started-with-flutter-3bdfb.appspot.com',
+  apiKey: '',
+  appId: '',
+  messagingSenderId: '',
+  projectId: '',
+  authDomain: '',
+  storageBucket: '',
 );
 
 void main() async {
@@ -20,14 +21,14 @@ void main() async {
   // Configure the default Firebase project.
   await Firebase.initializeApp(options: firebaseOptions);
 
-  // TODO(2): wrap with `ChangeNotifierProvider` and create a new `AuthState` instance.
+  // TODO(3): wrap with `ChangeNotifierProvider` and create a new `AuthState` instance.
   runApp(
     const MyApp(),
   );
 }
 
 /// Holds the authentication state of the user.
-// TODO(3): extend `ChangeNotifier`.
+// TODO(4): extend `ChangeNotifier`.
 class AuthState {
   final _auth = FirebaseAuth.instance;
 
@@ -37,7 +38,7 @@ class AuthState {
   AuthState() {
     _auth.authStateChanges().listen((user) {
       _user = user;
-      // TODO(4): call `notifyListeners()`.
+      // TODO(5): call `notifyListeners()`.
     });
   }
 
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      // TODO(5): Use `Consumer` to dynamically show the user based on `AuthState` user property.
+      // TODO(6): Use `Consumer` to dynamically show the user based on `AuthState` user property.
       home: const WelcomePage(),
     );
   }
@@ -105,7 +106,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              // TODO(6): Use `Consumer` to use the `AuthState` method `signUpNewGuest()` on pressed event.
+              // TODO(7): Use `Consumer` to use the `AuthState` method `signUpNewGuest()` on pressed event.
               ElevatedButton(
                 onPressed: () {},
                 child: const Text('Start'),
@@ -123,7 +124,7 @@ class PollsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(7): Read the user display name from `AuthState` using context.
+    // TODO(8): Read the user display name from `AuthState` using context.
     final name = '';
 
     return Scaffold(

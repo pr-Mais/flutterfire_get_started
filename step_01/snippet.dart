@@ -2,19 +2,21 @@
 
 import 'package:flutter/material.dart';
 
-const firebaseOptions = FirebaseOptions(
-  apiKey: 'AIzaSyBzTujHR_zs6CnxcBR-e2PuFcj8U0EfyK0',
-  appId: '1:252234506814:web:a5950ff065e27301a8676f',
-  messagingSenderId: '252234506814',
-  projectId: 'get-started-with-flutter-3bdfb',
-  authDomain: 'get-started-with-flutter-3bdfb.firebaseapp.com',
-  storageBucket: 'get-started-with-flutter-3bdfb.appspot.com',
-);
+//TODO(2): create a Firebase project on (console.firebase.google.com), then create a web app, then paste credentials here.
+
+// const firebaseOptions = FirebaseOptions(
+//   apiKey: '',
+//   appId: '',
+//   messagingSenderId: '',
+//   projectId: '',
+//   authDomain: '',
+//   storageBucket: '',
+// );
 
 void main() async {
   //TODO(3): Ensure WidgetsFlutterBinding is initialized.
 
-  //TODO(2): calls `Firebase.initializeApp()` and pass firebaseOptions.
+  //TODO(4): calls `Firebase.initializeApp()` and pass firebaseOptions.
 
   runApp(
     const MyApp(),

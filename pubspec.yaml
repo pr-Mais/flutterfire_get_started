@@ -1,0 +1,19 @@
+name: flutterfire_get_started
+description: Get started with Flutter and Firebase.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+  flutter: '>=2.0.0'
+
+dependencies:
+  cloud_firestore: ^3.1.11
+  firebase_auth: ^3.3.13
+  firebase_core: ^1.14.0
+  flutter:
+    sdk: flutter
+  provider: ^6.0.2
+
+flutter:
+  uses-material-design: true

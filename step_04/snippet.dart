@@ -1,19 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-//TODO(1): import Firestore.
+//TODO(2): import Firestore.
 
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
+//TODO(1): paste your credentials.
 const firebaseOptions = FirebaseOptions(
-  apiKey: 'AIzaSyBzTujHR_zs6CnxcBR-e2PuFcj8U0EfyK0',
-  appId: '1:252234506814:web:a5950ff065e27301a8676f',
-  messagingSenderId: '252234506814',
-  projectId: 'get-started-with-flutter-3bdfb',
-  authDomain: 'get-started-with-flutter-3bdfb.firebaseapp.com',
-  storageBucket: 'get-started-with-flutter-3bdfb.appspot.com',
+  apiKey: '',
+  appId: '',
+  messagingSenderId: '',
+  projectId: '',
+  authDomain: '',
+  storageBucket: '',
 );
 
 void main() async {
@@ -61,10 +62,10 @@ class PollsState extends ChangeNotifier {
   List<QueryDocumentSnapshot<Poll>>? _polls;
   List<QueryDocumentSnapshot<Poll>> get polls => _polls ?? [];
 
-  //TODO(2): Define a getter to reference the `poll` collection.
+  //TODO(3): Define a getter to reference the `poll` collection.
 
   PollsState() {
-    //TODO(3): Listen to poll collection and update local _polls list accordingly.
+    //TODO(4): Listen to poll collection and update local _polls list accordingly.
   }
 
   Future<void> createPoll(Poll poll) async {}
@@ -162,7 +163,7 @@ class PollsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          //TODO(4): Display a list of polls from `PollsState`.
+          //TODO(6): Display a list of polls from `PollsState`.
         ],
       ),
     );

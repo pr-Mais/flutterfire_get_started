@@ -1,17 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// TODO(2): import provider package
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
+//TODO(1): paste your credentials.
 const firebaseOptions = FirebaseOptions(
-  apiKey: 'AIzaSyBzTujHR_zs6CnxcBR-e2PuFcj8U0EfyK0',
-  appId: '1:252234506814:web:a5950ff065e27301a8676f',
-  messagingSenderId: '252234506814',
-  projectId: 'get-started-with-flutter-3bdfb',
-  authDomain: 'get-started-with-flutter-3bdfb.firebaseapp.com',
-  storageBucket: 'get-started-with-flutter-3bdfb.appspot.com',
+  apiKey: '',
+  appId: '',
+  messagingSenderId: '',
+  projectId: '',
+  authDomain: '',
+  storageBucket: '',
 );
 
 void main() async {
@@ -20,6 +22,7 @@ void main() async {
   // Configure the default Firebase project.
   await Firebase.initializeApp(options: firebaseOptions);
 
+  // TODO(3): wrap with `ChangeNotifierProvider` and create a new `AuthState` instance.
   runApp(
     ChangeNotifierProvider<AuthState>(
       create: (_) => AuthState(),
@@ -29,6 +32,7 @@ void main() async {
 }
 
 /// Holds the authentication state of the user.
+// TODO(4): extend `ChangeNotifier`.
 class AuthState extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
 
@@ -38,6 +42,7 @@ class AuthState extends ChangeNotifier {
   AuthState() {
     _auth.authStateChanges().listen((user) {
       _user = user;
+      // TODO(5): call `notifyListeners()`.
       notifyListeners();
     });
   }
@@ -66,6 +71,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
+      // TODO(6): Use `Consumer` to dynamically show the user based on `AuthState` user property.
       home: Consumer<AuthState>(
         builder: (_, auth, __) {
           // If a guest has signed in.
@@ -118,6 +124,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               const SizedBox(height: 20),
+              // TODO(7): Use `Consumer` to use the `AuthState` method `signUpNewGuest()` on pressed event.
               Consumer<AuthState>(
                 builder: (_, auth, __) => ElevatedButton(
                   onPressed: () => auth.signUpNewGuest(nameController.text),
@@ -137,6 +144,7 @@ class PollsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(8): Read the user display name from `AuthState` using context.
     final currentUser = context.watch<AuthState>().user!;
 
     return Scaffold(
